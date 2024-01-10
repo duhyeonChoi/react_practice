@@ -1,16 +1,25 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
+import "./Detail.css";
 
 export default function Detail(props) {
 
   let { id } = useParams();
   let toShow = props.shoes.find( x => x.id == id );
   let [ tab, setTab ] = useState(0);
+  let [ fade2, setFade2 ] = useState('start');
+
+  useEffect( ()=>{
+    setFade2('end');
+    return ( ()=>{
+      setFade2('start');
+    });
+  }, [fade2]);
 
   return (
   <>
-    <div className="container">
+    <div className={"container " + {fade2}}>
       <div className="row">
         <div className="col-md-6">
           <img
@@ -37,20 +46,32 @@ export default function Detail(props) {
           <Nav.Link eventKey="link2" onClick={ ()=>setTab(2)}>버튼2</Nav.Link>
         </Nav.Item>
     </Nav>
-    <TabContent tab={tab}/>
     
+    <TabContent tab={tab}/>
 
     </div>
   </>
   );
 }
 
-function TabContent({tab}) {
+function TabContent({tab, shoes}) {
+  let [ fade, setFade ] = useState("start");
+
+  useEffect( ()=>{
+    let a = setTimeout( ()=>{ setFade("start end") }, 100);
+
+    return (()=>{
+      clearTimeout(a);
+      setFade("start");
+    });
+
+  }, [tab]);
+
   if( tab == 0) {
-    return <div>내용0</div>
+    return <div className={fade}>내용0</div>
   } else if ( tab == 1 ) {
-    return <div>내용1</div>
+    return <div className={fade}>내용1</div>
   } else if ( tab == 2 ) {
-    return <div>내용2</div>
+    return <div className={fade}>내용2</div>
   }
 }

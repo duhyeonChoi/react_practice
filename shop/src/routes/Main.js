@@ -1,4 +1,4 @@
- import Container from "react-bootstrap/Container";
+import Container from "react-bootstrap/Container";
 import bgpic from "../img/bg.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

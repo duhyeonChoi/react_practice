@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route, Link, useNavigate, Outlet } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Main from "./routes/Main.js";
 import Detail from "./routes/Detail.js";
 import Nav from "react-bootstrap/Nav";
@@ -9,13 +9,9 @@ import data from "./data.js";
 import { useState } from "react";
 
 
-
-
-
 export default function App() {
   let navigate = useNavigate();
   let [shoes, setShoes] = useState(data);
-
 
   return (
     <div className="App">
