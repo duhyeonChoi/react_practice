@@ -8,6 +8,8 @@ import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js"
 import data from "./data.js";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 
 export default function App() {
@@ -17,6 +19,24 @@ export default function App() {
   useEffect( ()=>{
     localStorage.setItem('watched', JSON.stringify([]))
   }, [])
+
+  // let res = useQuery('작명', ()=>
+  //   axios.get('https://codingapple1.github.io/userdata.json')
+  //   .then((a)=>{ return a.data }),
+  //   { staleTime : 2000 }
+  // )
+    let res = axios.get('https://codingapple1.github.io/userdata.json')
+    .then((a)=> {
+      return a.data;
+    })
+    .catch( ()=>{
+      console.log("실패")
+      return null;
+    })
+  // res.data
+  // res.isLoading
+  // res.error
+    console.log(res)
 
   return (
     <div className="App">
@@ -34,16 +54,18 @@ export default function App() {
   );
 }
 
-function Myheader(props) {
+function Myheader({navigate, res}) {
   return (
     <Navbar bg="light" variant="light">
     <Container>
-      <Navbar.Brand onClick={ () => { props.navigate("/"); } }>ShoeShop</Navbar.Brand>
+      <Navbar.Brand onClick={ () => { navigate("/"); } }>ShoeShop</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="#home">Home</Nav.Link>
         {/* <Nav.Link onClick={ () => { props.navigate("/detail/0"); } }>Detail</Nav.Link> */}
-        <Nav.Link onClick={ () => { props.navigate("/cart"); } }>Cart</Nav.Link>
+        <Nav.Link onClick={ () => { navigate("/cart"); } }>Cart</Nav.Link>
       </Nav>
+
+      <Nav className="ms-auto">안녕</Nav>
     </Container>
   </Navbar>
   );
