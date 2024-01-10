@@ -1,16 +1,16 @@
 import "./App.css";
+import { lazy, useEffect, useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Main from "./routes/Main.js";
+import data from "./data.js";
+
 import Detail from "./routes/Detail.js";
 import Cart from "./routes/Cart.js"
-import data from "./data.js";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
-
+// const Detail = lazy( ()=> import('./routes/Detail.js') );
+// const Cart = lazy( ()=> import('./routes/Cart.js') );
 
 export default function App() {
   let navigate = useNavigate();
@@ -19,24 +19,6 @@ export default function App() {
   useEffect( ()=>{
     localStorage.setItem('watched', JSON.stringify([]))
   }, [])
-
-  // let res = useQuery('작명', ()=>
-  //   axios.get('https://codingapple1.github.io/userdata.json')
-  //   .then((a)=>{ return a.data }),
-  //   { staleTime : 2000 }
-  // )
-    let res = axios.get('https://codingapple1.github.io/userdata.json')
-    .then((a)=> {
-      return a.data;
-    })
-    .catch( ()=>{
-      console.log("실패")
-      return null;
-    })
-  // res.data
-  // res.isLoading
-  // res.error
-    console.log(res)
 
   return (
     <div className="App">
@@ -54,7 +36,7 @@ export default function App() {
   );
 }
 
-function Myheader({navigate, res}) {
+function Myheader({navigate}) {
   return (
     <Navbar bg="light" variant="light">
     <Container>
