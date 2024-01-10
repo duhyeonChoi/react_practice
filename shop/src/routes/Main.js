@@ -54,23 +54,6 @@ export default function Main(props) {
           console.log("실패")
         });
 
-        // // 서버에 요청(1곳)
-        // axios.post('[url]', {name: 'kim'})
-        // .then( ()=>{
-
-        // })
-        // .catch( ()=>{
-
-        // });
-        // // 서버에 요청(여러 곳)
-        // Promise.all([ axios.get(~), axios.get(~) ])
-        // .then( ()=>{
-
-        // })
-        // .catch( ()=>{
-
-        // })
-
       }}>더보기</button>
     </>
   );
