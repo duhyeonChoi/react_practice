@@ -1,7 +1,8 @@
-import Container from "react-bootstrap/Container";
+ import Container from "react-bootstrap/Container";
 import bgpic from "../img/bg.png";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import axios from 'axios';
 
 function Card(props) {
   return (
@@ -28,8 +29,6 @@ export default function Main(props) {
 
   return (
     <>
-
-
       <div
         className="main-bg"
         style={{ backgroundImage: "url(" + bgpic + ")" }}
@@ -37,11 +36,42 @@ export default function Main(props) {
 
       <Container>
         <Row>
-          {props.shoes.map(function (_, i) {
+        {
+          props.shoes.map(function (_, i) {
             return <Card shoes={props.shoes} id={i} />;
-          })}
+          })
+        }
         </Row>
       </Container>
+
+      <button onClick={()=>{
+        axios.get('https://codingapple1.github.io/shop/data2.json')
+        .then( (res)=>{
+          let temp = [...props.shoes, ...res.data];
+          props.setShoes(temp);
+        })
+        .catch( ()=>{
+          console.log("실패")
+        });
+
+        // // 서버에 요청(1곳)
+        // axios.post('[url]', {name: 'kim'})
+        // .then( ()=>{
+
+        // })
+        // .catch( ()=>{
+
+        // });
+        // // 서버에 요청(여러 곳)
+        // Promise.all([ axios.get(~), axios.get(~) ])
+        // .then( ()=>{
+
+        // })
+        // .catch( ()=>{
+
+        // })
+
+      }}>더보기</button>
     </>
   );
 }

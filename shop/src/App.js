@@ -14,7 +14,7 @@ import { useState } from "react";
 
 export default function App() {
   let navigate = useNavigate();
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
 
 
   return (
@@ -22,7 +22,7 @@ export default function App() {
       <Myheader navigate={navigate}/>
 
       <Routes>
-        <Route path="/" element={ <Main shoes={shoes}/> }/>
+        <Route path="/" element={ <Main shoes={shoes} setShoes={setShoes}/> }/>
         <Route path="/detail/:id" element={ <Detail shoes={shoes} /> }/>
 
 
