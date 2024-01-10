@@ -1,10 +1,11 @@
 import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import Main from "./routes/Main.js";
-import Detail from "./routes/Detail.js";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import Main from "./routes/Main.js";
+import Detail from "./routes/Detail.js";
+import Cart from "./routes/Cart.js"
 import data from "./data.js";
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={ <Main shoes={shoes} setShoes={setShoes}/> }/>
         <Route path="/detail/:id" element={ <Detail shoes={shoes} /> }/>
-
+        <Route path="/cart" element= { <Cart /> } />
 
         <Route path="*" element={ <div>not found</div> }/>
 
