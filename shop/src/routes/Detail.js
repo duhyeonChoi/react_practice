@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
 import "./Detail.css";
+import { addItem } from '../store.js'
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail(props) {
 
@@ -9,6 +11,7 @@ export default function Detail(props) {
   let toShow = props.shoes.find( x => x.id == id );
   let [ tab, setTab ] = useState(0);
   let [ fade2, setFade2 ] = useState('start');
+  let dispatch = useDispatch();
 
   useEffect( ()=>{
     setFade2('end');
@@ -31,7 +34,9 @@ export default function Detail(props) {
           <h4 className="pt-5">{toShow.title}</h4>
             <p>{toShow.content}</p>
             <p>{toShow.price}원</p>
-          <button className="btn btn-danger">주문하기</button>
+            <button className="btn btn-danger" onClick={ ()=>{
+              dispatch(addItem( {id : 1, name : toShow.title, count : 1} ))
+            }}>주문하기</button>
         </div>
       </div>
 

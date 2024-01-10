@@ -37,7 +37,8 @@ function Myheader(props) {
       <Navbar.Brand onClick={ () => { props.navigate("/"); } }>ShoeShop</Navbar.Brand>
       <Nav className="me-auto">
         <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link onClick={ () => { props.navigate("/detail"); } }>Detail</Nav.Link>
+        <Nav.Link onClick={ () => { props.navigate("/detail/0"); } }>Detail</Nav.Link>
+        <Nav.Link onClick={ () => { props.navigate("/cart"); } }>Cart</Nav.Link>
       </Nav>
     </Container>
   </Navbar>
