@@ -1,9 +1,7 @@
 import Container from "react-bootstrap/Container";
 import bgpic from "../img/bg.png";
 import Row from "react-bootstrap/Row";
-import data from "../data.js";
 import Col from "react-bootstrap/Col";
-import { useState } from "react";
 
 function Card(props) {
   return (
@@ -26,8 +24,7 @@ function Card(props) {
   );
 }
 
-export default function Main() {
-  let [shoes] = useState(data);
+export default function Main(props) {
 
   return (
     <>
@@ -40,8 +37,8 @@ export default function Main() {
 
       <Container>
         <Row>
-          {shoes.map(function (_, i) {
-            return <Card shoes={shoes} id={i} />;
+          {props.shoes.map(function (_, i) {
+            return <Card shoes={props.shoes} id={i} />;
           })}
         </Row>
       </Container>

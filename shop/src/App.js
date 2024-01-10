@@ -5,30 +5,26 @@ import Detail from "./routes/Detail.js";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import data from "./data.js";
+import { useState } from "react";
+
+
 
 
 
 export default function App() {
   let navigate = useNavigate();
+  let [shoes] = useState(data);
+
 
   return (
     <div className="App">
       <Myheader navigate={navigate}/>
 
       <Routes>
-        <Route path="/" element={ <Main /> }/>
-        
-        <Route path="/detail" element={ <Detail /> }/>
+        <Route path="/" element={ <Main shoes={shoes}/> }/>
+        <Route path="/detail/:id" element={ <Detail shoes={shoes} /> }/>
 
-        <Route path="/about" element={ 
-          <>
-            <h4>회사정보</h4>
-            <Outlet />
-          </>
-        }>
-          <Route path="member" element={ <div>멤버</div> } />
-          <Route path="location" element={ <div>위치</div> } />
-        </Route>
 
         <Route path="*" element={ <div>not found</div> }/>
 
