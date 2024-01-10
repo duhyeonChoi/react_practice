@@ -20,9 +20,15 @@ export default function App() {
         
         <Route path="/detail" element={ <Detail /> }/>
 
-        {/* <Route path="/about" element={<h4>회사정보</h4>}>
-          <Route path="/member" element={ <div>멤버</div> } />
-        </Route> */}
+        <Route path="/about" element={ 
+          <>
+            <h4>회사정보</h4>
+            <Outlet />
+          </>
+        }>
+          <Route path="member" element={ <div>멤버</div> } />
+          <Route path="location" element={ <div>위치</div> } />
+        </Route>
 
         <Route path="*" element={ <div>not found</div> }/>
 
