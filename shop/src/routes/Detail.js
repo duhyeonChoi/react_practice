@@ -14,6 +14,15 @@ export default function Detail(props) {
   let dispatch = useDispatch();
 
   useEffect( ()=>{
+    let res = localStorage.getItem('watched');
+    res = JSON.parse(res);
+    res.push(toShow.id);
+    res = new Set(res);
+    res = Array.from(res);
+    localStorage.setItem('watched', JSON.stringify(res));
+  }, [])
+
+  useEffect( ()=>{
     setFade2('end');
     return ( ()=>{
       setFade2('start');
@@ -25,7 +34,7 @@ export default function Detail(props) {
     <div className={"container " + {fade2}}>
       <div className="row">
         <div className="col-md-6">
-          <img
+          <img 
             src={"https://codingapple1.github.io/shop/shoes"+(parseInt(id)+1)+".jpg"}
             width="100%"
             />

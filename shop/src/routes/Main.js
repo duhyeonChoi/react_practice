@@ -17,6 +17,7 @@ function Card(props) {
             ".jpg"
           }
           width="80%"
+          onClick={ ()=>{props.navigate( "/detail/"+props.id)}}
         />
         <h4>{props.shoes[props.id].title}</h4>
         <p>{props.shoes[props.id].price}</p>
@@ -38,7 +39,7 @@ export default function Main(props) {
         <Row>
         {
           props.shoes.map(function (_, i) {
-            return <Card shoes={props.shoes} id={i} />;
+            return <Card shoes={props.shoes} id={i} navigate={props.navigate} />;
           })
         }
         </Row>
