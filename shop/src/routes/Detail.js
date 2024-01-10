@@ -47,7 +47,7 @@ export default function Detail(props) {
         </Nav.Item>
     </Nav>
     
-    <TabContent tab={tab}/>
+    <TabContent tab={tab} shoes={props.shoes}/>
 
     </div>
   </>
@@ -68,7 +68,7 @@ function TabContent({tab, shoes}) {
   }, [tab]);
 
   if( tab == 0) {
-    return <div className={fade}>내용0</div>
+    return <div className={fade}>{shoes[0].title}</div>
   } else if ( tab == 1 ) {
     return <div className={fade}>내용1</div>
   } else if ( tab == 2 ) {
