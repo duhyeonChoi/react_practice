@@ -1,29 +1,15 @@
 import { Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { changeName, increase, addCount } from "../store";
-import { useState, memo } from "react";
-
-// 재랜더링 안 할 컴포넌트
-let Child = memo( function() {
-  return (
-    <div>자식</div>
-  );
-})
-
 
 export default function Cart() {
   let state = useSelector((state) => {
     return state;
   });
   let dispatch = useDispatch();
-  let [ count, setCount ] = useState(0);
 
   return (
     <>
-    {/* child가 무거운 컴포넌트라고 한다면
-    꼭 필요할 때만 재랜더링 해야됨 */}
-      <Child></Child>
-      <button onClick={ ()=>{ setCount(count+1) } }>+</button>
       <div>
         {state.user.name} {state.user.age}
         <button onClick={ ()=>{ dispatch(increase(10)) }}>버튼</button>
