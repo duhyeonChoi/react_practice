@@ -3,7 +3,7 @@ import "./App.css";
 
 export default function App() {
   // let [game, setGame] = useState([Array(9).fill(null)]);
-  const [game, setGame] = useState(
+  let [game, setGame] = useState(
     [
       [
         null,null,null,
@@ -11,15 +11,15 @@ export default function App() {
         null,null,null
       ]
     ]
-    ); // 3*3 짜리 빈 array 생성
-    const [ currentMove, setCurrentMove ] = useState(0);
-    const currentGame = game[currentMove];
-    const xTurn = currentMove % 2 === 0;
+  ); // 3*3 짜리 빈 array 생성
+  const [ currentMove, setCurrentMove ] = useState(0);
+  const xTurn = currentMove % 2 === 0;
+  const currentGame = game[currentMove];
     
-    function controlHelper(nextGame) {
-      // setGame([...game, nextGame]);
-      const temp = [...game.slice(0, currentMove +1), nextGame];
-      setGame(temp);
+  function controlHelper(nextGame) {
+    // setGame([...game, nextGame]);
+    const temp = [...game.slice(0, currentMove +1), nextGame];
+    setGame(temp);
     setCurrentMove(temp.length -1);
   }
 
@@ -30,11 +30,10 @@ export default function App() {
   const moves = game.map((_, move) => {
     let description; // written in button
     if (move > 0) {
-      description = "Go to move #" + move;
+      description = 'Go to move #' + move;
     } else {
-      description = "Go to game start";
+      description = 'Go to game start';
     }
-
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
@@ -46,11 +45,7 @@ export default function App() {
     <>
       <div className="game">
         <div className="game-board">
-          <Board
-            xTurn={xTurn}
-            game={currentGame}
-            controlHelper={controlHelper}
-          />
+          <Board xTurn={xTurn} game={currentGame} controlHelper={controlHelper} />
         </div>
         <div className="game-info">
           <ol>{moves}</ol>
@@ -65,7 +60,8 @@ function Board({ xTurn, game, controlHelper }) {
     if (CheckWinner(game) || game[id]) {
       return;
     }
-    let nextGame = [...game];
+    // let nextGame = [...game];
+    const nextGame = game.slice();
     if (xTurn) {
       nextGame[id] = "X";
     } else {
@@ -87,64 +83,19 @@ function Board({ xTurn, game, controlHelper }) {
     <>
       <div className="status">{status}</div>
       <div className="board-row">
-        <Square
-          value={game[0]}
-          clicked={() => {
-            clicked(0);
-          }}
-        />
-        <Square
-          value={game[1]}
-          clicked={() => {
-            clicked(1);
-          }}
-        />
-        <Square
-          value={game[2]}
-          clicked={() => {
-            clicked(2);
-          }}
-        />
+        <Square value={game[0]} clicked={() => { clicked(0); }} />
+        <Square value={game[1]} clicked={() => { clicked(1); }} />
+        <Square value={game[2]} clicked={() => { clicked(2); }} />
       </div>
       <div className="board-row">
-        <Square
-          value={game[3]}
-          clicked={() => {
-            clicked(3);
-          }}
-        />
-        <Square
-          value={game[4]}
-          clicked={() => {
-            clicked(4);
-          }}
-        />
-        <Square
-          value={game[5]}
-          clicked={() => {
-            clicked(5);
-          }}
-        />
+        <Square value={game[3]} clicked={() => { clicked(3); }} />
+        <Square value={game[4]} clicked={() => { clicked(4); }} />
+        <Square value={game[5]} clicked={() => { clicked(5); }} />
       </div>
       <div className="board-row">
-        <Square
-          value={game[6]}
-          clicked={() => {
-            clicked(6);
-          }}
-        />
-        <Square
-          value={game[7]}
-          clicked={() => {
-            clicked(7);
-          }}
-        />
-        <Square
-          value={game[8]}
-          clicked={() => {
-            clicked(8);
-          }}
-        />
+        <Square value={game[6]} clicked={() => { clicked(6); }} />
+        <Square value={game[7]} clicked={() => { clicked(7); }} />
+        <Square value={game[8]} clicked={() => { clicked(8); }} />
       </div>
     </>
   );
